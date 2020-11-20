@@ -7,6 +7,8 @@
 //CONSTANTES / IMPORTACIONES
 require('./Config/config')
 const express = require('express');
+// Conexion a BD (mongoDB)
+const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const app = express();
 
@@ -20,7 +22,7 @@ app.use(bodyParser.json())
  res(objeto que puede tener varias funciones) como; send (envie un texto con mas o menos un formato html), json (se respondra en formato JSON al cliente) */
 // GET (consultar)
 app.get('/', function(req, res) {
-    res.send('<h1> Bienvenido a mi Servidor REST </h1>')
+    res.send('<h1> Bienvenido a mi Servidor REST (localhost)</h1>')
 })
 
 /* ruta saludo 
@@ -32,7 +34,7 @@ app.get('/saludo', function(req, res) {
 })*/
 
 /* ruta user */
-app.get('/user', function(req, res) {
+app.get('/usuario', function(req, res) {
     // res.send('<h1> Bienvenido a Usuarios </h1>')
     res.json({
         ok: 200,
@@ -41,7 +43,7 @@ app.get('/user', function(req, res) {
 })
 
 // POST (insertar)
-app.post('/user', function(req, rest) {
+app.post('/usuario', function(req, rest) {
     // Recibir variables del body para ello necesitamos un paquete de body 
     // npm i body-parser
     let nombre = req.body.nombre;
@@ -76,7 +78,7 @@ app.post('/user', function(req, rest) {
 // PUT (administrar, actualizar)
 // /:id se concatena el id, el usuario lo ingresara. Eso es una variable, para cacharla se tiene que hacer una variable local.
 // Cachar valores por params, body (postman)
-app.put('/user/:id/:nombre', function(req, rest) {
+app.put('/usuario/:id/:nombre', function(req, rest) {
     let id = req.params.id;
     let nombre = req.params.nombre;
 
@@ -89,7 +91,7 @@ app.put('/user/:id/:nombre', function(req, rest) {
 })
 
 // DELETE (borrar)
-app.delete('/user/:id', function(req, rest) {
+app.delete('/usuario/:id', function(req, rest) {
     let id = req.params.id;
     rest.json({
         ok: '200',
@@ -98,6 +100,21 @@ app.delete('/user/:id', function(req, rest) {
     })
 })
 
+// Conexion BD (MongoBD)
+// mongoose (objeto, constante que importamos). connect (funcion)('parametro de la muncion, en este caso url de conexion') por estantar es mongodb://localhost, dominio o IP del servidor : puerto (el puerto de Mongo siempre es 27017 y en SQL 3306) /nombre de BD (si no la encuentra entinces la crea), {JSON}
+/*await*/
+mongoose.connect('mongodb://localhost:27017/cafeteria', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true
+}, (err, res) => {
+    if (err) throw err;
+    // Conexion exitosa a la BD
+    console.log('Base de datos Online');
+});
+
+// Conexion a HEROKU
 /* app.listen (la app siempre va a escuchar por el puerto 3000
  Funcion tipo flecha, la cual tendra un console.log para conocer si el servidor esta en linea. */
 /* Se cambia el 3000, llamando la variable de config.js, y para que se reconozca se tiene que importar. */
