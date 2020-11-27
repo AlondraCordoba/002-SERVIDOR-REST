@@ -1,4 +1,5 @@
 const express = require('express');
+const Usuario = require('../Models/usuario')
 const app = express();
 
 /* app servidor y esta preparado para recibir peticiones del cliente(GET), ruta raiz(/), una funcion con dos parametros (request (recibir/cachar), response(mandar))
@@ -27,10 +28,10 @@ app.get('/usuario', function(req, res) {
 })
 
 // POST (insertar)
-app.post('/usuario', function(req, rest) {
+app.post('/usuario', function(req, res) {
     // Recibir variables del body para ello necesitamos un paquete de body 
-    // npm i body-parser
-    let nombre = req.body.nombre;
+    // npm i body-parser --save
+    // let nombre = req.body.nombre;
     /*
         let apellidoPaterno = req.body.apellidoPaterno;
         let apellidoMaterno = req.body.apellidoMaterno;
@@ -38,7 +39,31 @@ app.post('/usuario', function(req, rest) {
         let sexo = req.body.sexo;*/
     // Todo el body
     let body = req.body;
-    if (nombre == undefined) {
+
+    let usr = new Usuario({
+        nombre: body.nombre,
+        email: body.email,
+        password: body.password
+    });
+
+    usr.save((err, usrDB) => {
+        if (err) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'Ocurrio un error',
+                err
+            });
+        }
+
+        res.json({
+            ok: true,
+            msg: 'Usuario insertado con exito',
+            usrDB
+        });
+
+    });
+
+    /*if (nombre == undefined) {
         //Codigo de estado (status)
         res.status(400).json({
             ok: 400,
@@ -48,14 +73,14 @@ app.post('/usuario', function(req, rest) {
         rest.json({
             ok: 200,
             mensaje: 'Usuario insertado con exito.',
-            /*nombre: nombre,
+            nombre: nombre,
             apellidoPaterno: apellidoPaterno,
             apellidoMaterno: apellidoMaterno,
             edad: edad,
-            sexo: sexo*/
-            body: body
-        })
-    }
+            sexo: sexo
+            body: body 
+        }) 
+    } */
 })
 
 
