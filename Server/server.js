@@ -1,9 +1,10 @@
 /* npm init --- npm i express --save 
+  npm install nodemon -g --save
  Expess nos ayuda  a levantar nuestros servidores tipo REST
  ARCHIVO PRINCIPAL 
  Codigo necesario para crear un servidor */
 // Programando un AVC (altas,bajas,consultas)
-
+ 
 //CONSTANTES / IMPORTACIONES
 require('./Config/config')
 const express = require('express');
