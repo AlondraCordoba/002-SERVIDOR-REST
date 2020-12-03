@@ -157,14 +157,43 @@ app.put('/usuario/:id/', function(req, res) {
 })
 
 // DELETE (borrar)
-app.delete('/usuario/:id', function(req, rest) {
+app.delete('/usuario/:id', function(req, res) {
     let id = req.params.id;
-    rest.json({
+    /*rest.json({
         ok: '200',
         mensaje: 'Usuario eliminado con exito',
         id: id
+    })*/
+    // Delete de un usuario pero no es recomendado eliminar usuarios
+    /*Usuario.deleteOne({ _id: id }, (err, usuarioBorrado) => {
+        if (err) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'Ocurrio un error al momento de eliminar'
+            });
+        }
+        res.json({
+            ok: true,
+            msg: 'Usuario eliminado con exito',
+            usuarioBorrado
+        });
+    });*/
+
+    // Activar o desactivar un usuario (estado)
+    Usuario.findByIdAndUpdate(id, { estado: false }, { new: true, runValidators: true, context: 'query' }, (err, usrDB) => {
+        if (err) {
+            return res.status(400).json({
+                ok: false,
+                msg: 'Ocurrio un error al momento de eliminar'
+            });
+        }
+        res.json({
+            ok: true,
+            msg: 'Usuario eliminado con exito',
+            usrDB
+        });
     })
-})
+});
 
 //Exportar nuestro servidor / todas las rutas.
 module.exports = app;
