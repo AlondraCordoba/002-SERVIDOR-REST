@@ -1,0 +1,38 @@
+NOTAS correspondientes al ultimo video de la clase
+
+Mongo Atlas
+Buid a Cluster
+Create a Starter Cluster (Free)
+AWS -- North America (N. Virginia (us-east-1))
+Create Cluster
+
+--Cluster--
+Dejar que cargue (linea punteada, color azul claro)
+En visual, dirigirnos a server.js en la linea 34 (mongoose.connect('mongodb://localhost:27017/cafeteria', {
+))
+se remplazara ese string por las credenciales que se tengan en Mongo Atlas
+
+Boton Collections --- Load Sample Dataset 
+Create database -- cafeteria --- Se recompienda riempre hacer una coleccion inicial
+
+ Database Access (Se creara un usuario para la base de datos el cual suministrara)
+ Authentication Method = password
+ Password Authentication = admin (user), (password)
+ Database User Privileges (Read & Write ...)
+ Add user
+
+Clusters
+Connect
+Add a connection IP address --- Allow acces from anywhere --- Add ip address --- Choose a connection method 
+Connect with mongo shell --- Cadena de conexion --- close
+
+Regresar a visual, server.js linea 34
+la cadena remplazara al string (url de localhost que ya se tenia), hay que despejar/modificar valores
+quitar mongo, "", -- username admin
+Se van a agregar los datos de contraseña (usuario que se agrego), nombre de la BD, e usuario
+
+Ejecutar nodemon, si al ejecutar se muestra el mensaje de Base de datos Online, es que todo va correcto
+Agregar un usuario y ver si es que se agrego la colecion y el usuario en Mongo Atlas
+
+
+
