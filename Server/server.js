@@ -26,6 +26,7 @@ app.get('/', function(req, res) {
 // Usar o importar todas las rutas que se tengan en el archivo mencionado en la ruta.
 app.use(require('./Routes/usuario'));
 app.use(require('./Routes/categoria'));
+app.use(require('./Routes/login'));
 
 // Conexion BD (MongoBD)
 // mongoose (objeto, constante que importamos). connect (funcion)('parametro de la muncion, en este caso url de conexion') por estantar es mongodb://localhost, dominio o IP del servidor : puerto (el puerto de Mongo siempre es 27017 y en SQL 3306) /nombre de BD (si no la encuentra entinces la crea), {JSON}

@@ -1,4 +1,5 @@
 const express = require('express');
+const bcrypt = require('bcrypt');
 const Usuario = require('../Models/usuario');
 const app = express();
 const _ = require('underscore');
@@ -74,8 +75,10 @@ app.post('/usuario', function(req, res) {
     let usr = new Usuario({
         nombre: body.nombre,
         email: body.email,
-        password: body.password
+        password: bcrypt.hashSync(body.password, 10)
     });
+    //         password: body.password
+    // hashSync Cualquier campo o el campo que se especifique se va a encriptar.
 
     usr.save((err, usrDB) => {
         if (err) {
@@ -154,7 +157,7 @@ app.put('/usuario/:id/', function(req, res) {
                 usuario: usrDB
             })
         })
-})
+});
 
 // DELETE (borrar)
 app.delete('/usuario/:id', function(req, res) {
