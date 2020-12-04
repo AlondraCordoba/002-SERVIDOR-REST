@@ -33,6 +33,9 @@ Se van a agregar los datos de contraseña (usuario que se agrego), nombre de la 
 
 Ejecutar nodemon, si al ejecutar se muestra el mensaje de Base de datos Online, es que todo va correcto
 Agregar un usuario y ver si es que se agrego la colecion y el usuario en Mongo Atlas
+Dejar de ejecutar nodemon
+
+git commit, git push
 
 
-
+Heroku, Deploy, el repo de Git Classroom, entonces para deployarlo se tiene que crear un nuevo Repo
