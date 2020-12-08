@@ -42,6 +42,7 @@ app.post('/usuario', function(req, res) {
 
     let usr = new Usuario({
         nombre: body.nombre,
+        apellido: body.apellido,
         email: body.email,
         password: bcrypt.hashSync(body.password, 10)
     });
@@ -104,7 +105,7 @@ app.put('/usuario/:id/', function(req, res) {
     // Cuando hablamos de params, se tiene que declarar en la ruta y en el query no.
     // pick solo tomar algunos campos. [Los campos que queremos en este caso el body]
     let id = req.params.id;
-    let body = _.pick(req.body, ['nombre', 'email']);
+    let body = _.pick(req.body, ['nombre', 'email', 'appellido']);
     // Parametros para que la consulta trabaje con mayor eficiencia. Si no encuentra un usuario lo crea (new)
     // runValidators : Siempre revise las validaciones que se tienen en el modelo.
     // context: La consulta se mandara como tipo query
