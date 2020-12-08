@@ -23,24 +23,6 @@ app.get('/usuario', function(req, res) {
         })
 })
 
-app.get('/usuario/:id', function(req, res) {
-    let id = req.params.id;
-    Usuario.find({ estado: true, id })
-        .exec((err, usuario) => {
-            if (err) {
-                return res.status(400).json({
-                    ok: 400,
-                    mensaje: 'Ocurrio un error al momento de consultar.',
-                    err
-                })
-            }
-            res.json({
-                ok: true,
-                msg: 'Usuario obtenido con exito.',
-                usuario
-            })
-        })
-})
 
 // POST (insertar)
 app.post('/usuario', function(req, res) {
