@@ -28,6 +28,7 @@ app.post('/libro', (req, res) => {
     let body = req.body;
     let pro = new Productos({
         nombre: body.nombre,
+        disponible: body.disponible,
         autor: body.autor,
         precioU: body.precioU,
         categoria: body.categoria,
