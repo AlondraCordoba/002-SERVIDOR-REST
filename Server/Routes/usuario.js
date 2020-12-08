@@ -58,7 +58,7 @@ app.post('/usuario', function(req, res) {
 // PUT (administrar, actualizar)
 app.put('/usuario/:id', function(req, res) {
     let id = req.params.id;
-    let body = _.pick(req.body, ['nombre', 'email', 'appellido', 'role', 'estado', 'google']);
+    let body = _.pick(req.body, ['nombre', 'email', 'apellido', 'role', 'estado', 'google']);
     Usuario.findByIdAndUpdate(id, body, { new: true, runValidators: true, context: 'query' },
         (err, usrDB) => {
             if (err) {
