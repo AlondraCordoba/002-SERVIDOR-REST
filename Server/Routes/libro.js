@@ -30,7 +30,6 @@ app.post('/libro', (req, res) => {
         nombre: body.nombre,
         autor: body.autor,
         precioU: body.precioU,
-        disponible: body.disponible,
         categoria: body.categoria,
         usuario: body.usuario
     });
