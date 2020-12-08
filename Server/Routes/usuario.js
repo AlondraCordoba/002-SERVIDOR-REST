@@ -5,10 +5,8 @@ const app = express();
 const _ = require('underscore');
 
 app.get('/usuario', function(req, res) {
-
     Usuario.find({ estado: true })
         .exec((err, usuarios) => {
-            // Validar un error
             if (err) {
                 return res.status(400).json({
                     ok: 400,
@@ -16,13 +14,30 @@ app.get('/usuario', function(req, res) {
                     err
                 })
             }
-            // Respuesta correcta, si no se manda un status aqui por default se manda un 200.
-            // Conteo de ecuantos registros hay en la conexion de usuarios. (cuantas posiciones encontro en el array)
             res.json({
                 ok: true,
                 msg: 'Lista de usuarios obtenida con exito.',
                 conteo: usuarios.length,
                 usuarios
+            })
+        })
+})
+
+app.get('/usuario/:id', function(req, res) {
+    let id = req.params.id;
+    Usuario.find({ estado: true, id })
+        .exec((err, usuario) => {
+            if (err) {
+                return res.status(400).json({
+                    ok: 400,
+                    mensaje: 'Ocurrio un error al momento de consultar.',
+                    err
+                })
+            }
+            res.json({
+                ok: true,
+                msg: 'Usuario obtenido con exito.',
+                usuario
             })
         })
 })
@@ -59,7 +74,7 @@ app.post('/usuario', function(req, res) {
 
 
 // PUT (administrar, actualizar)
-app.put('/usuario/:id/', function(req, res) {
+app.put('/usuario/:id', function(req, res) {
     let id = req.params.id;
     let body = _.pick(req.body, ['nombre', 'email', 'appellido', 'role', 'estado', 'google']);
     Usuario.findByIdAndUpdate(id, body, { new: true, runValidators: true, context: 'query' },
