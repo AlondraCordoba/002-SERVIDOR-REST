@@ -4,12 +4,10 @@ const Schema = mongoose.Schema;
 let productoSchema = new Schema({
     nombre: {
         type: String,
-        unique: true,
         required: [true, 'Nombre del libro obligatorio']
     },
     autor: {
         type: String,
-        unique: true,
         required: [true, 'Nombre del autor obligatorio']
     },
     precioU: {

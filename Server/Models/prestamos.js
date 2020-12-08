@@ -4,12 +4,10 @@ const Schema = mongoose.Schema;
 let prestamoSchema = new Schema({
     nombre: {
         type: String,
-        unique: true,
         required: [true, 'Nombre del usuario que tiene el prestamo obligatorio']
     },
     apellido: {
         type: String,
-        unique: true,
         required: [true, 'Apellido del usuario que tiene el prestamo obligatorio']
     },
     email: {
