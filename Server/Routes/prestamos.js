@@ -30,7 +30,6 @@ app.post('/prestamo', (req, res) => {
         nombre: body.nombre,
         apellido: body.apellido,
         email: body.email,
-        estado: body.estado,
         libro: body.libro,
         usuarioRegistro: body.usuarioRegistro
     });
