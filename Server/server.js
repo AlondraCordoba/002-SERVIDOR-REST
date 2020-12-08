@@ -1,11 +1,3 @@
-/* npm init --- npm i express --save 
-  npm install nodemon -g --save
- Expess nos ayuda  a levantar nuestros servidores tipo REST
- ARCHIVO PRINCIPAL 
- Codigo necesario para crear un servidor */
-// Programando un AVC (altas,bajas,consultas)
-
-//CONSTANTES / IMPORTACIONES
 require('./Config/config')
 const express = require('express');
 // Conexion a BD (mongoDB)
@@ -27,12 +19,15 @@ app.get('/', function(req, res) {
 app.use(require('./Routes/usuario'));
 app.use(require('./Routes/categoria'));
 app.use(require('./Routes/login'));
+app.use(require('./Routes/prestamos'));
+app.use(require('./Routes/libro'));
+
 
 // Conexion BD (MongoBD)
 // mongoose (objeto, constante que importamos). connect (funcion)('parametro de la muncion, en este caso url de conexion') por estantar es mongodb://localhost, dominio o IP del servidor : puerto (el puerto de Mongo siempre es 27017 y en SQL 3306) /nombre de BD (si no la encuentra entinces la crea), {JSON}
 /*await*/
 // srv = servidor
-mongoose.connect('mongodb+srv://admin:AlondraMongoDBAdmin0729@cluster0.cn9sh.mongodb.net/cafeteria', {
+mongoose.connect('mongodb+srv://admin:AlondraMongoDBAdmin0729@cluster0.cn9sh.mongodb.net/biblioteca', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
@@ -42,7 +37,6 @@ mongoose.connect('mongodb+srv://admin:AlondraMongoDBAdmin0729@cluster0.cn9sh.mon
     // Conexion exitosa a la BD
     console.log('Base de datos Online');
 });
-
 // Conexion a HEROKU
 /* app.listen (la app siempre va a escuchar por el puerto 3000
  Funcion tipo flecha, la cual tendra un console.log para conocer si el servidor esta en linea. */

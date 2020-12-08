@@ -4,41 +4,9 @@ const Usuario = require('../Models/usuario');
 const app = express();
 const _ = require('underscore');
 
-/* app servidor y esta preparado para recibir peticiones del cliente(GET), ruta raiz(/), una funcion con dos parametros (request (recibir/cachar), response(mandar))
- res(objeto que puede tener varias funciones) como; send (envie un texto con mas o menos un formato html), json (se respondra en formato JSON al cliente) */
-
-// GET (consultar)
-/*app.get('/', function(req, res) {
-    res.send('<h1> Bienvenido a mi Servidor REST</h1>')
-})*/
-
-/* ruta saludo 
-app.get('/saludo', function(req, res) {
-    res.json({
-        ok: '200',
-        mensaje: 'Bienvenida Alondra'
-    })
-})*/
-
-/* ruta user */
 app.get('/usuario', function(req, res) {
-    // Variable local tipo query 
-    // Desde donde - hasta donde quiere el cliente que se listen los usuarios, esto con req.
-    // query manera en la que el cliente manda datos al servidor, esto en params en postman. Similar a body.
-    let desde = req.query.desde || 0;
-    let hasta = req.query.hasta || 5;;
-    // res.send('<h1> Bienvenido a Usuarios </h1>')
-    /*res.json({
-        ok: 200,
-        mensaje: 'Usuarios consultados con exito.'
-    })*/
-    // Se espera un error o se espera la informacion en una variable llamada usuario, funcion tipo flecha => 
-    // Constante de usuario, funcion find, exec (funcion anidada) para ejecutar la funcion find y puede tener un error o puede traer los usuarios, se tiene que validar.
-    //     Usuario.find({ }).exec((err, usuarios) => {
-    // Esto de derecha a izquierda
+
     Usuario.find({ estado: true })
-        .skip(Number(desde))
-        .limit(Number(hasta))
         .exec((err, usuarios) => {
             // Validar un error
             if (err) {
@@ -162,27 +130,7 @@ app.put('/usuario/:id/', function(req, res) {
 // DELETE (borrar)
 app.delete('/usuario/:id', function(req, res) {
     let id = req.params.id;
-    /*rest.json({
-        ok: '200',
-        mensaje: 'Usuario eliminado con exito',
-        id: id
-    })*/
-    // Delete de un usuario pero no es recomendado eliminar usuarios
-    /*Usuario.deleteOne({ _id: id }, (err, usuarioBorrado) => {
-        if (err) {
-            return res.status(400).json({
-                ok: false,
-                msg: 'Ocurrio un error al momento de eliminar'
-            });
-        }
-        res.json({
-            ok: true,
-            msg: 'Usuario eliminado con exito',
-            usuarioBorrado
-        });
-    });*/
 
-    // Activar o desactivar un usuario (estado)
     Usuario.findByIdAndUpdate(id, { estado: false }, { new: true, runValidators: true, context: 'query' }, (err, usrDB) => {
         if (err) {
             return res.status(400).json({
@@ -197,7 +145,6 @@ app.delete('/usuario/:id', function(req, res) {
         });
     })
 });
-
 //Exportar nuestro servidor / todas las rutas.
 module.exports = app;
 

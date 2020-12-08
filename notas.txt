@@ -38,4 +38,11 @@ Dejar de ejecutar nodemon
 git commit, git push
 
 
-Heroku, Deploy, el repo de Git Classroom, entonces para deployarlo se tiene que crear un nuevo Repo
+Heroku, Deploy, el repo de Git Classroom, entonces para deployarlo se tiene que crear un nuevo Repositorio
+Para cambiar el push en Angular entonces se ejecuta el siguiente comando: git remote set-url origin "nueva url del repositorio"
+git remote -v (ver a que repo se esta haciendo push)
+git push
+
+Nos dirigimos nuevamente a Heroku, seleccionamos el repositorio, connect, Deploy branch, View
+Para revisar que la liga funciona, se copia (https://rest-server-191286.herokuapp.com/)
+Postman--- agregamos un nuevo ambiente --- Creamos nuevos usuarios, categorias, etc... para probar que funcione

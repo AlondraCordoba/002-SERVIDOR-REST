@@ -4,12 +4,7 @@ const _ = require('underscore');
 const Categoria = require('../Models/categoria');
 
 app.get('/categoria', (req, res) => {
-    let desde = req.query.desde || 0;
-    let hasta = req.query.hasta || 5;
-    // populate = cruzar las tablas (inner)
     Categoria.find({})
-        .skip(Number(desde))
-        .limit(Number(hasta))
         .populate('usuarios', 'nombre email')
         .exec((err, categorias) => {
             if (err) {

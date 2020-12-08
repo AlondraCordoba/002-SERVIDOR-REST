@@ -6,7 +6,7 @@ let categoriaSchema = new Schema({
     descripcion: {
         type: String,
         unique: true,
-        required: [true, 'La descarpcion es obligatoria']
+        required: [true, 'La descripcion es obligatoria']
     },
     usuario: {
         type: Schema.Types.ObjectId,
