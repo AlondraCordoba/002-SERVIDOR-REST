@@ -15,7 +15,7 @@ let prestamoSchema = new Schema({
     email: {
         type: String,
         unique: true,
-        required: [true, 'Email del usuario que tiene el prestamo obligatorio']
+        required: [true, 'Estado del usuario que tiene el prestamo obligatorio']
     },
     estado: {
         type: Boolean,
